@@ -3,16 +3,17 @@ from random import choice
 
 class Car:
 
-    def __init__(self, speed, color, name, type, is_police):
+    def __init__(self, speed, color, name, car_type, is_police=False):
         self.speed = speed
         self.color = color
         self.name = name
-        self.type = type
+        self.type = car_type
         self.is_police = is_police
 
     def go(self):
         print(f'{self.type} - {self.name} - {self.color} is starting to move.')
-        if self.is_police: print("Please note, it a Police car")
+        if self.is_police:
+            print("Please note, it a Police car")
 
     def stop(self):
         print(f'{self.type} - {self.name} - {self.color} stopped')
@@ -26,9 +27,6 @@ class Car:
 
 class TownCar(Car):
 
-    def __init__(self, speed, color, name):
-        super().__init__(speed, color, name, "Town Car", False)
-
     def show_speed(self):
         if self.speed > 60:
             print(f'The current speed for {self.type} - {self.name} - {self.color} '
@@ -38,15 +36,10 @@ class TownCar(Car):
 
 
 class SportCar(Car):
-
-    def __init__(self, speed, color, name):
-        super().__init__(speed, color, name, "Sport Car", False)
+    pass
 
 
 class WorkCar(Car):
-
-    def __init__(self, speed, color, name):
-        super().__init__(speed, color, name, "Work Car", False)
 
     def show_speed(self):
         if self.speed > 40:
@@ -57,17 +50,15 @@ class WorkCar(Car):
 
 
 class PoliceCar(Car):
-
-    def __init__(self, speed, color, name):
-        super().__init__(speed, color, name, "Police Car", True)
+    pass
 
 
-cars = [TownCar(50, "Black", "Volkswagen Beetle"),
-        TownCar(70, "Red", "Chevrolet Corvette"),
-        PoliceCar(80, "White", "Volkswagen Beetle"),
-        WorkCar(50, "Silver", "Honda Fit"),
-        WorkCar(40, "Black", "Jeep Cherokee"),
-        SportCar(90, "Black", "Jaguar FX")]
+cars = [TownCar(50, "Black", "Volkswagen Beetle", "Town Car"),
+        TownCar(70, "Red", "Chevrolet Corvette", "Town Car"),
+        PoliceCar(80, "White", "Volkswagen Beetle", "Police Car", True),
+        WorkCar(50, "Silver", "Honda Fit", "Work Car"),
+        WorkCar(40, "Black", "Jeep Cherokee", "Work Car"),
+        SportCar(90, "Black", "Jaguar FX", "Sport Car")]
 turns = ["right", "left"]
 
 for car in cars:
